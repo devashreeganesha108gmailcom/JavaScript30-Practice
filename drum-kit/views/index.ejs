@@ -1,0 +1,43 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link href="/css/styles.css" rel="stylesheet" type="text/css">  
+</head>
+<body>
+  <div class="keys">
+  <% 
+    keyNames = ["A","S","D","F","G","H","J","K","L"] 
+    keySounds = ["clap","hihat","kick","openhat","boom","ride","snare","tom","tink"]
+    keyDataValues = [65,83,68,70,71,72,74,75,76]
+    audioFileSources = ["sounds/clap.wav","sounds/hihat.wav","sounds/kick.wav","sounds/openhat.wav","sounds/boom.wav","sounds/ride.wav",
+                        "sounds/snare.wav","sounds/tom.wav","sounds/tink.wav"]
+    for(let i=0; i<keyNames.length; i++){ 
+  %>
+    <div data-key="<%= keyDataValues[i] %>" class="key">
+        <kbd><%= keyNames[i] %></kbd>
+        <span class="sound"><%= keySounds[i] %></span>
+    </div>
+  <% } %>
+  </div>
+  <% for(let i=0; i<audioFileSources.length; i++){ %>
+    <audio data-key="<%= keyDataValues[i] %>" src="<%= audioFileSources[i] %>"></audio>
+  <% } %>
+<script>
+  const keys = Array.from(document.querySelectorAll('.key'));
+  keys.forEach(key => key.addEventListener('transitionend', (event)=>{
+     if (event.propertyName !== 'transform') return;
+     event.target.classList.remove('playing');
+  }));
+  window.addEventListener('keydown', (event)=>{
+    const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+    const key = document.querySelector(`div[data-key="${event.keyCode}"]`);
+    if (!audio) return;
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+  });
+</script>
+</body>
+</html>
