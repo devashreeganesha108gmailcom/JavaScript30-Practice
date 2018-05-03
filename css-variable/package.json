@@ -1,0 +1,16 @@
+{
+  "name": "css-variable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "ejs": "^1.0.0",
+    "express": "^4.6.1"
+  },
+  "author": "Devashish Shrestha",
+  "license": "ISC"
+}
