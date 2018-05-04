@@ -25,8 +25,8 @@
     <audio data-key="<%= keyDataValues[i] %>" src="<%= audioFileSources[i] %>"></audio>
   <% } %>
 <script>
-  const keys = Array.from(document.querySelectorAll('.key'));
-  keys.forEach(key => key.addEventListener('transitionend', (event)=>{
+  //const keys = Array.from(document.querySelectorAll('.key'));
+  document.querySelectorAll('.key').forEach(key => key.addEventListener('transitionend', (event)=>{
      if (event.propertyName !== 'transform') return;
      event.target.classList.remove('playing');
   }));
