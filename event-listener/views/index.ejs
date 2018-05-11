@@ -14,12 +14,11 @@
   </div>
 <button></button>
 <script>
-  function logText(e) {
+  document.querySelectorAll('div').forEach(div => div.addEventListener('click', (e)=>{
     console.log(this.classList.value);
     // e.stopPropagation(); // stop bubbling!
     // console.log(this);
-  }
-  document.querySelectorAll('div').forEach(div => div.addEventListener('click', logText, {
+  }, {
     capture: true,
     once: false
   }));
